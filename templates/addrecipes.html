@@ -1,0 +1,101 @@
+{% extends 'base.html' %} {% block content %}
+
+<div class="container">
+    <h3>Add Recipes</h3>
+    <div class="row">
+        <form action="{{url_for('insert_recipe')}}" method="POST" class="col s12">
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">local_dining</i>
+                    <input id="recipe_name" name="recipe_name" type="text" class="validate">
+                    <label>Recipe Name</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">local_dining</i>
+                    <select id="preparation_time" name="preparation_time">
+                    <option value="" disabled selected></option>
+                    {% for prep in preparation %}
+                        <option value="{{prep.preparation_time}}">{{prep.preparation_time}}</option>
+                    {% endfor %}
+                </select>
+                    <label>Preparation Time</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">local_dining</i>
+                    <select id="serves" name="serves">
+                    <option value="" disabled selected></option>
+                    {% for s in serv %}
+                        <option value="{{s.serves}}">{{s.serves}}</option>
+                    {% endfor %}
+                </select>
+                    <label>Serves</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">local_dining</i>
+                    <select id="difficulty" name="difficulty">
+                    <option value="" disabled selected></option>
+                    {% for d in diff %}
+                        <option value="{{d.difficulty}}">{{d.difficulty}}</option>
+                    {% endfor %}
+                </select>
+                    <label>Difficulty</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">local_dining</i>
+                    <textarea id="step_1" name="step_1" type="textarea" class="materialize-textarea"></textarea>
+                    <label>Step 1</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">local_dining</i>
+                    <textarea id="step_2" name="step_2" type="textarea" class="materialize-textarea"></textarea>
+                    <label>Step 2</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">local_dining</i>
+                    <textarea id="step_3" name="step_3" type="textarea" class="materialize-textarea"></textarea>
+                    <label>Step 3</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">local_dining</i>
+                    <textarea id="step_4" name="step_4" type="textarea" class="materialize-textarea"></textarea>
+                    <label>Step 4</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">local_dining</i>
+                    <textarea id="step_5" name="step_5" type="textarea" class="materialize-textarea"></textarea>
+                    <label>Step 5</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">local_dining</i>
+                    <textarea id="step_6" name="step_6" type="textarea" class="materialize-textarea"></textarea>
+                    <label>Step 6</label>
+                </div>
+            </div>
+            <div class="row">
+                <button class="btn waves-effect waves-light" type="submit">Add Recipe
+                <i class="material-icons right">playlist_add</i>
+            </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

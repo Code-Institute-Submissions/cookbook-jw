@@ -28,8 +28,34 @@ def insert_recipe():
     recipes=mongo.db.recipes
     recipes.insert_one(request.form.to_dict())
     return redirect(url_for('show_recipes'))
+
+@app.route('/edit_recipe/<recipe_id>')
+def edit_recipe(recipe_id):
+    recipes=mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+    preparation=mongo.db.preparation_time.find()
+    serv=mongo.db.serves.find()
+    diff=mongo.db.difficulty.find()
+    return render_template("editrecipe.html", recipe=recipes, prep=preparation, ser=serv, dif=diff)
     
-    
+@app.route('/update_recipe/<recipe_id>', methods=['POST'])
+def update_recipe(recipe_id):
+    recipes = mongo.db.recipes
+    recipes.update({'_id': ObjectId(recipe_id)},
+    {
+        'recipe_name':request.form.get('recipe_name'),
+        'preparation_time':request.form.get('preparation_time'),
+        'serves': request.form.get('serves'),
+        'difficulty': request.form.get('difficulty'),
+        'ingredients':request.form.get('ingredients'),
+        'step_1':request.form.get('step_1'),
+        'step_2':request.form.get('step_2'),
+        'step_3':request.form.get('step_3'),
+        'step_4':request.form.get('step_4'),
+        'step_5':request.form.get('step_5'),
+        'step_6':request.form.get('step_6')
+    })
+    return redirect(url_for('get_recipes'))
+
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
         port=int(os.environ.get('PORT')),

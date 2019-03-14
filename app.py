@@ -14,11 +14,22 @@ mongo = PyMongo(app)
 @app.route('/show_recipes')
 def show_recipes():
     return render_template("recipes.html",
-    recipes=mongo.db.recipes.find())
+    recipes=mongo.db.recipes.find(),
+    preparation=mongo.db.preparation_time.find(),
+    serv=mongo.db.serves.find(),
+    diff=mongo.db.difficulty.find())
 
 @app.route('/add_recipes')
 def add_recipes():
     return render_template('addrecipes.html',
+    preparation=mongo.db.preparation_time.find(),
+    serv=mongo.db.serves.find(),
+    diff=mongo.db.difficulty.find())
+    
+@app.route('/filter_recipes')
+def filter_recipes():
+    return render_template("filterrecipes.html",
+    recipes=mongo.db.recipes.find(),
     preparation=mongo.db.preparation_time.find(),
     serv=mongo.db.serves.find(),
     diff=mongo.db.difficulty.find())
@@ -54,8 +65,14 @@ def update_recipe(recipe_id):
         'step_5':request.form.get('step_5'),
         'step_6':request.form.get('step_6')
     })
-    return redirect(url_for('get_recipes'))
+    return redirect(url_for('show_recipes'))
 
+@app.route('/delete_recipe/<recipe_id>')
+def delete_recipe(recipe_id):
+    mongo.db.recipes.remove({'_id': ObjectId(recipe_id)})
+    return redirect(url_for('show_recipes'))
+        
+        
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
         port=int(os.environ.get('PORT')),

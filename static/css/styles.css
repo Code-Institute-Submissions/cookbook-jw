@@ -1,20 +1,26 @@
-body{
-    background-color: grey;
-}
 
 .btn_small{
     height: 24px;
-    width: 60px;
+    width: 75px;
     line-height: 24px;
     margin: 5px 5px;
     padding: 0 0.5em;
 }
 
-.task_header{
+.recipe_header{
     margin-top: 10px;
     margin-left: 50px;
 }
 
-.task_header_icon{
-    padding-top: 10px;
+.brand-logo{
+    margin-left: 30px;
+}
+
+h3{
+    text-align: center;
+    padding: 20px;
+}
+
+.recipe_list_margin{
+    margin-top: 50px;
 }

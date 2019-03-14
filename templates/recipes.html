@@ -1,26 +1,72 @@
 {% extends 'base.html' %} {% block content %}
 
 <div class="container">
-  <h3>Recipes</h3>
-  <ul class="collapsible" data-collapsible="accordion">
-    {% for recipe in recipes %}
-    <li>
-      <div class="collapsible-header"><i class="material-icons">local_dining</i><strong>{{ recipe.recipe_name }}</strong></div>
-      <div class="collapsible-body">
-        <div>Preparation Time: {{ recipe.preparation_time }}</div>
-        <div>Serves: {{ recipe.serves }}</div>
-        <div>Difficulty: {{ recipe.difficulty }}</div>
-        <div>Ingredients: {{ recipe.ingredients }}</div>
-        <div>Step 1: {{ recipe.step_1 }}</div>
-        <div>Step 2: {{ recipe.step_2 }}</div>
-        <div>Step 3: {{ recipe.step_3 }}</div>
-        <div>Step 4: {{ recipe.step_4 }}</div>
-        <div>Step 5: {{ recipe.step_5 }}</div>
-        <div>Step 6: {{ recipe.step_6 }}</div>
+  <h3>View Recipes</h3>
+  <form action="" method="POST" class="col s12">
+    <div class="row">
+      <div class="input-field col s4">
+        <select id="preparation_time" name="preparation_time" type="text" class="validate">
+        <option value="" disabled selected>Choose Preparation Time</option>
+          {% for prep in preparation %}
+          <option value="{{prep.preparation_time}}">{{prep.preparation_time}}</option>
+          {% endfor %}
+        </select>
+        <label>Preparation Time</label>
       </div>
-    </li>
-    {% endfor %}
-  </ul>
+      <div class="input-field col s4">
+        <select id="serves" name="serves" type="text" class="validate">
+        <option value="" disabled selected>Choose Serves</option>
+          {% for s in serv %}
+          <option value="{{s.serves}}">{{s.serves}}</option>
+          {% endfor %}
+        </select>
+        <label>Serves</label>
+      </div>
+      <div class="input-field col s4">
+        <select id="difficulty" name="difficulty" type="text" class="validate">
+        <option value="" disabled selected>Choose Difficulty</option>
+          {% for d in diff %}
+          <option value="{{d.difficulty}}">{{d.difficulty}}</option>
+          {% endfor %}
+        </select>
+        <label>Difficulty</label>
+      </div>
+    </div>
+    <div>
+      <a href="{{url_for('filter_recipes')}}"class="waves-effect waves-light btn">Filter Recipes<i class="material-icons right">filter_list</i></a>
+    </div>
+  </form>
+
+  <div class="recipe_list_margin">
+    <ul class="collapsible" data-collapsible="accordion">
+      {% for recipe in recipes %}
+      <li>
+        <div class="collapsible-header">
+          <div class="col s3">
+            <i class="material-icons">keyboard_arrow_down</i>
+            <a href="{{url_for('edit_recipe', recipe_id=recipe._id)}}" class="waves-effect waves-light btn btn_small">Edit</a>
+            <a href="{{url_for('delete_recipe', recipe_id=recipe._id)}}" class="waves-effect waves-light btn btn_small">Delete</a>
+          </div>
+          <div class="col s9 recipe_header">
+            <strong>{{ recipe.recipe_name }}</strong>
+          </div>
+        </div>
+        <div class="collapsible-body">
+          <div><strong>Preparation Time:</strong> {{ recipe.preparation_time }}</div>
+          <div><strong>Serves:</strong> {{ recipe.serves }}</div>
+          <div><strong>Difficulty:</strong> {{ recipe.difficulty }}</div>
+          <div><strong>Ingredients:</strong> {{ recipe.ingredients }}</div>
+          <div><strong>Step 1:</strong> {{ recipe.step_1 }}</div>
+          <div><strong>Step 2:</strong> {{ recipe.step_2 }}</div>
+          <div><strong>Step 3:</strong> {{ recipe.step_3 }}</div>
+          <div><strong>Step 4:</strong> {{ recipe.step_4 }}</div>
+          <div><strong>Step 5:</strong> {{ recipe.step_5 }}</div>
+          <div><strong>Step 6:</strong> {{ recipe.step_6 }}</div>
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
 </div>
 
 {% endblock %}

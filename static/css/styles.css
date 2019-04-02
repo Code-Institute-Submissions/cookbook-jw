@@ -5,7 +5,7 @@
     line-height: 24px;
     margin: 5px 5px;
     padding: 0 0.5em;
-    background-color: green;
+    background-color: #FFB03B;
 }
 
 .recipe_header{
@@ -27,9 +27,9 @@ h3{
 }
 
 nav {
-    background-color: green;
+    background-color: #FFB03B;
 }
 
 .btn{
-    background-color: green;
+    background-color: #FFB03B;
 }

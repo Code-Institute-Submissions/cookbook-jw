@@ -19,6 +19,17 @@ def show_recipes():
     serv=mongo.db.serves.find(),
     diff=mongo.db.difficulty.find())
 
+@app.route('/', methods=['POST', 'GET'])
+@app.route('/show_recipes', methods=['POST', 'GET'])
+def filter_recipes():
+    filter_by = []
+    filter = request.form
+    for key in filter: 
+        value_key = key
+        filter_by.append({value_key: request.form[value_key]})
+        filtered = mongo.db.recipes.find({'$and':filter_by})
+    return render_template("recipes.html", filt = filtered, preparation=mongo.db.preparation_time.find(),serv=mongo.db.serves.find(),diff=mongo.db.difficulty.find())
+
 @app.route('/add_recipes')
 def add_recipes():
     return render_template('addrecipes.html',
@@ -26,14 +37,6 @@ def add_recipes():
     serv=mongo.db.serves.find(),
     diff=mongo.db.difficulty.find())
     
-@app.route('/filter_recipes')
-def filter_recipes():
-    return render_template("filterrecipes.html",
-    recipes=mongo.db.recipes.find(),
-    preparation=mongo.db.preparation_time.find(),
-    serv=mongo.db.serves.find(),
-    diff=mongo.db.difficulty.find())
-
 @app.route('/insert_recipe', methods=['POST'])
 def insert_recipe():
     recipes=mongo.db.recipes

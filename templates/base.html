@@ -1,12 +1,17 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
-        <link rel="stylesheet" href="{{url_for('static', filename='css/styles.css')}}" type="text/css">
-    </head>
-    <body>
-        <header>
+
+<head>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.min.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/delicious.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/imagehover.min.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/styles.css')}}" type="text/css">
+</head>
+
+<body>
+    <header>
         <nav>
             <div class="nav-wrapper">
                 <a href="{{url_for('show_recipes')}}" class="brand-logo">Vegan Recipes</a>
@@ -14,7 +19,6 @@
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
                     <li><a href="{{url_for('show_recipes')}}">Home</a></li>
                     <li><a href="{{url_for('add_recipes')}}">Add Recipe<i class="material-icons right">playlist_add</i></a></li>
-
                 </ul>
                 <ul class="side-nav" id="mobile-demo">
                     <li><a href="{{url_for('show_recipes')}}">Home</a></li>
@@ -22,14 +26,32 @@
                 </ul>
             </div>
         </nav>
-        </header>
-        
-        {% block content %}
-        {% endblock %}
-        
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-        <script src={{url_for('static', filename='js/cookbook.js')}}></script>
-        </script>
-    </body>
+    </header>
+
+    {% block content %} {% endblock %}
+
+    <footer class="footer text-center">
+        <div class="footer-top">
+            <div class="row">
+                <div class="col-md-offset-3 col-md-6 text-center">
+                    <div class="widget">
+                        <h4 class="widget-title">Jonathan Walters 2019 for the Code Institute</h4>
+                        <div class="social-list">
+                            <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                            <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src={{url_for( 'static', filename='js/bootstrap.min.js' )}}></script>
+    <script src={{url_for( 'static', filename='js/custom.js' )}}></script>
+    <script src={{url_for( 'static', filename='js/jquery.easing.min.js' )}}></script>
+    <script src={{url_for( 'static', filename='js/jquery.min.js' )}}></script>
+    <script src={{url_for( 'static', filename='js/cookbook.js' )}}></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+</body>
+
 </html>

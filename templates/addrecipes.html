@@ -1,11 +1,11 @@
 {% extends 'base.html' %} {% block content %}
 
 <div class="container">
-    <h3>Add Recipes</h3>
+    <h3 class="logo-name recipe_list_margin">Add Recipes</h3>
     <div class="row white_background">
         <form action="{{url_for('insert_recipe')}}" method="POST" class="col s12">
             <div class="row">
-                <div class="input-field col s12">
+                <div class="input-field col s12 color=#ffb03b">
                     <input id="recipe_name" name="recipe_name" type="text" class="validate" required>
                     <label>Recipe Name</label>
                 </div>

@@ -33,3 +33,20 @@ nav {
 .btn{
     background-color: #FFB03B;
 }
+
+strong {
+    font-weight: 550;
+}
+
+.dropdown-content li>a, .dropdown-content li>span {
+    color: #ffb03b;
+}
+
+.btn:hover, .btn-large:hover {
+    background-color: #f79504;
+}
+
+
+
+
+

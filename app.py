@@ -13,7 +13,7 @@ mongo = PyMongo(app)
 @app.route('/')
 @app.route('/show_recipes')
 def show_recipes():
-    return render_template("recipes.html",
+    return render_template("index.html",
     recipes=mongo.db.recipes.find(),
     preparation=mongo.db.preparation_time.find(),
     serv=mongo.db.serves.find(),
@@ -28,7 +28,7 @@ def filter_recipes():
         value_key = key
         filter_by.append({value_key: request.form[value_key]})
         filtered = mongo.db.recipes.find({'$and':filter_by})
-    return render_template("recipes.html", filt = filtered, preparation=mongo.db.preparation_time.find(),serv=mongo.db.serves.find(),diff=mongo.db.difficulty.find())
+    return render_template("index.html", filt = filtered, preparation=mongo.db.preparation_time.find(),serv=mongo.db.serves.find(),diff=mongo.db.difficulty.find())
 
 @app.route('/add_recipes')
 def add_recipes():

@@ -50,36 +50,8 @@
     </div>
   </form>
 
-  <div class="recipe_list_margin">
-    <ul class="collapsible" data-collapsible="accordion">
-      {% for recipe in recipes %}
-      <li>
-        <div class="collapsible-header">
-          <div class="col s3">
-            <i class="material-icons">keyboard_arrow_down</i>
-            <a href="{{url_for('edit_recipe', recipe_id=recipe._id)}}" class="waves-effect waves-light btn btn_small">Edit</a>
-            <a href="{{url_for('delete_recipe', recipe_id=recipe._id)}}" class="waves-effect waves-light btn btn_small">Delete</a>
-          </div>
-          <div class="col s9 recipe_header">
-            <strong>{{ recipe.recipe_name }}</strong>
-          </div>
-        </div>
-        <div class="collapsible-body">
-          <div><strong>Preparation Time:</strong> {{ recipe.preparation_time }}</div>
-          <div><strong>Serves:</strong> {{ recipe.serves }}</div>
-          <div><strong>Difficulty:</strong> {{ recipe.difficulty }}</div>
-          <div><strong>Ingredients:</strong> {{ recipe.ingredients }}</div>
-          <div><strong>Step 1:</strong> {{ recipe.step_1 }}</div>
-          <div><strong>Step 2:</strong> {{ recipe.step_2 }}</div>
-          <div><strong>Step 3:</strong> {{ recipe.step_3 }}</div>
-          <div><strong>Step 4:</strong> {{ recipe.step_4 }}</div>
-          <div><strong>Step 5:</strong> {{ recipe.step_5 }}</div>
-          <div><strong>Step 6:</strong> {{ recipe.step_6 }}</div>
-        </div>
-      </li>
-      {% endfor %}
-    </ul>
-  </div>
+  {% if request.method == 'POST' %}
+  
   <div class="recipe_list_margin">
     <ul class="collapsible" data-collapsible="accordion">
       {% for item in filt %}
@@ -110,6 +82,42 @@
       {% endfor %}
     </ul>
   </div>
+  
+  {% else %}
+
+  <div class="recipe_list_margin">
+    <ul class="collapsible" data-collapsible="accordion">
+      {% for recipe in recipes %}
+      <li>
+        <div class="collapsible-header">
+          <div class="col s3">
+            <i class="material-icons">keyboard_arrow_down</i>
+            <a href="{{url_for('edit_recipe', recipe_id=recipe._id)}}" class="waves-effect waves-light btn btn_small">Edit</a>
+            <a href="{{url_for('delete_recipe', recipe_id=recipe._id)}}" class="waves-effect waves-light btn btn_small">Delete</a>
+          </div>
+          <div class="col s9 recipe_header">
+            <strong>{{ recipe.recipe_name }}</strong>
+          </div>
+        </div>
+        <div class="collapsible-body">
+          <div><strong>Preparation Time:</strong> {{ recipe.preparation_time }}</div>
+          <div><strong>Serves:</strong> {{ recipe.serves }}</div>
+          <div><strong>Difficulty:</strong> {{ recipe.difficulty }}</div>
+          <div><strong>Ingredients:</strong> {{ recipe.ingredients }}</div>
+          <div><strong>Step 1:</strong> {{ recipe.step_1 }}</div>
+          <div><strong>Step 2:</strong> {{ recipe.step_2 }}</div>
+          <div><strong>Step 3:</strong> {{ recipe.step_3 }}</div>
+          <div><strong>Step 4:</strong> {{ recipe.step_4 }}</div>
+          <div><strong>Step 5:</strong> {{ recipe.step_5 }}</div>
+          <div><strong>Step 6:</strong> {{ recipe.step_6 }}</div>
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+  
+  {% endif %}
+  
 </div>
 
 {% endblock %}

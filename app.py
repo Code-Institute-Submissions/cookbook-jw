@@ -1,15 +1,42 @@
 import os
-from flask import Flask, render_template, redirect, request, url_for
+from flask import Flask, render_template, redirect, request, url_for, flash
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 
 app = Flask(__name__)
+app.secret_key = "secret"
 
 app.config["MONGO_DBNAME"] = 'cookbook'
 app.config["MONGO_URI"] = 'mongodb://jonw83:200JnFsWs183@ds343985.mlab.com:43985/cookbook'
 
 mongo = PyMongo(app)
 
+@app.route('/', methods=['POST', 'GET'])
+@app.route('/show_recipes', methods=['POST', 'GET'])
+def show_recipes():
+    if request.method== "POST":
+        filter_by = []
+        filter = request.form
+        if len(filter)>0:
+            for key in filter: 
+                value_key = key
+                filter_by.append({value_key: request.form[value_key]})
+            filtered = mongo.db.recipes.find({'$and':filter_by})
+            return render_template("index.html", filt = filtered, preparation=mongo.db.preparation_time.find(),serv=mongo.db.serves.find(),diff=mongo.db.difficulty.find())
+        else:
+            flash('Please select at least one option to filter')
+            recipes=mongo.db.recipes.find()
+            print(recipes)
+            return redirect("show_recipes")
+    else:
+        return render_template("index.html", recipes=mongo.db.recipes.find(), preparation=mongo.db.preparation_time.find(), serv=mongo.db.serves.find(),diff=mongo.db.difficulty.find())
+"""
+ if filter_by == []:
+                flash('Please select a option from the filter list')
+                return render_template("index.html", recipes=mongo.db.recipes.find(), preparation=mongo.db.preparation_time.find(), serv=mongo.db.serves.find(),diff=mongo.db.difficulty.find())
+            else:
+"""
+"""
 @app.route('/')
 @app.route('/show_recipes')
 def show_recipes():
@@ -18,7 +45,8 @@ def show_recipes():
     preparation=mongo.db.preparation_time.find(),
     serv=mongo.db.serves.find(),
     diff=mongo.db.difficulty.find())
-
+"""
+"""
 @app.route('/', methods=['POST', 'GET'])
 @app.route('/show_recipes', methods=['POST', 'GET'])
 def filter_recipes():
@@ -28,8 +56,13 @@ def filter_recipes():
         value_key = key
         filter_by.append({value_key: request.form[value_key]})
         filtered = mongo.db.recipes.find({'$and':filter_by})
-    return render_template("index.html", filt = filtered, preparation=mongo.db.preparation_time.find(),serv=mongo.db.serves.find(),diff=mongo.db.difficulty.find())
-
+        if filter_by == "":
+            flash('Please select a option from the filter list')
+            return render_template("index.html")
+        else:
+            return render_template("index.html", filt = filtered, preparation=mongo.db.preparation_time.find(),serv=mongo.db.serves.find(),diff=mongo.db.difficulty.find())
+"""
+      
 @app.route('/add_recipes')
 def add_recipes():
     return render_template('addrecipes.html',

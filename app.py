@@ -30,38 +30,6 @@ def show_recipes():
             return redirect("show_recipes")
     else:
         return render_template("index.html", recipes=mongo.db.recipes.find(), preparation=mongo.db.preparation_time.find(), serv=mongo.db.serves.find(),diff=mongo.db.difficulty.find())
-"""
- if filter_by == []:
-                flash('Please select a option from the filter list')
-                return render_template("index.html", recipes=mongo.db.recipes.find(), preparation=mongo.db.preparation_time.find(), serv=mongo.db.serves.find(),diff=mongo.db.difficulty.find())
-            else:
-"""
-"""
-@app.route('/')
-@app.route('/show_recipes')
-def show_recipes():
-    return render_template("index.html",
-    recipes=mongo.db.recipes.find(),
-    preparation=mongo.db.preparation_time.find(),
-    serv=mongo.db.serves.find(),
-    diff=mongo.db.difficulty.find())
-"""
-"""
-@app.route('/', methods=['POST', 'GET'])
-@app.route('/show_recipes', methods=['POST', 'GET'])
-def filter_recipes():
-    filter_by = []
-    filter = request.form
-    for key in filter: 
-        value_key = key
-        filter_by.append({value_key: request.form[value_key]})
-        filtered = mongo.db.recipes.find({'$and':filter_by})
-        if filter_by == "":
-            flash('Please select a option from the filter list')
-            return render_template("index.html")
-        else:
-            return render_template("index.html", filt = filtered, preparation=mongo.db.preparation_time.find(),serv=mongo.db.serves.find(),diff=mongo.db.difficulty.find())
-"""
       
 @app.route('/add_recipes')
 def add_recipes():

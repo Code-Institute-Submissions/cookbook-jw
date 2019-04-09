@@ -45,7 +45,9 @@
         <label>Difficulty</label>
       </div>
       {% with messages = get_flashed_messages() %} {% if messages %}
-      <h2 class="font-weight-light flash">{% for message in messages %} {{ message }}</h2>
+      <div>
+        <h5 class="filter_flash">{% for message in messages %} {{ message }}</h5>
+      </div>
       {% endfor %} {% endif %} {% endwith %}
     </div>
     <div>

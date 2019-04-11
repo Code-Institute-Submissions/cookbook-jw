@@ -17,6 +17,7 @@ This app has been developed as part of my Full Stack Developer Diploma Data Cent
 
 ### Existing Features
 
+This is a web application which that allows visitors to the website to access, add, modify and delete vegan cooking recipes. It is a full stack web application (frontend and backend) that provides CRUD (Create, Read, Update, Delete) functionality to a database hosted on the Heroku platform.
 1. The [index page](templates/index.html) introduces the visitor to the website, and displays the list of recipes. Each recipe has a button link to edit or delete the recipe. Links are provided in the navbar to the homepage and to add new recipe to the database.
 1. The [add recipe page](templates/addrecipe.html) allows the visitor to add their own recipe to the database by completing the form. The recipe is then added to and stored in the mLab MongoDB database.
 1. The [edit recipe page](templates/editrecipe.html) allows the visitor to edit the existing recipes in the database. The recipe data is pre-filled from the database. Once the visitor has updated the recipe, the "update recipe button" once clicked will send the updated recipe to the database.
